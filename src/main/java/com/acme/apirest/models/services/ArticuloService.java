@@ -29,8 +29,18 @@ public class ArticuloService implements IArticuloService {
 	}
 	@Override
 	@Transactional(readOnly=true)
-	public List<Articulo> findByModeloStartsWith(String term) {
-		return (List<Articulo>) articuloDAO.findByModeloStartsWith(term);
+	public List<Articulo> searchArticuloByMarca(String marcaTerm) {
+		return (List<Articulo>) articuloDAO.searchArticuloByMarca(marcaTerm);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<Articulo> searchArticuloByModelo(String modeloTerm) {
+		return (List<Articulo>) articuloDAO.searchArticuloByModelo(modeloTerm);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<Articulo> searchArticuloByMarcaAndModelo(String marcaTerm, String modeloTerm) {
+		return (List<Articulo>) articuloDAO.searchArticuloByMarcaAndModelo(marcaTerm, modeloTerm);
 	}
 	@Override
 	@Transactional()

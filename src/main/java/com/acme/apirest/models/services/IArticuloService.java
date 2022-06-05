@@ -9,7 +9,9 @@ public interface IArticuloService {
 	
 	public Articulo findById(UUID id);
 
-    public List<Articulo> findByModeloStartsWith(String term);
+    public List<Articulo> searchArticuloByMarca(String marcaTerm);
+    public List<Articulo> searchArticuloByModelo(String modeloTerm);
+    public List<Articulo> searchArticuloByMarcaAndModelo(String marcaTerm, String modeloTerm);
 	
 	public Articulo save(Articulo articulo);
 	

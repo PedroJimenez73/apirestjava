@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.acme.apirest.models.entity.Articulo;
 import com.acme.apirest.models.services.IArticuloService;
 
-@CrossOrigin(origins={"http://localhost:4200"})
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class ArticuloRestController {
-	
+
 	@Autowired
 	private IArticuloService articuloService;
-	
+
 	@GetMapping("/articulos")
 	public List<Articulo> index() {
 		return articuloService.findAll();
@@ -42,9 +42,19 @@ public class ArticuloRestController {
 		return articuloService.findById(id);
 	}
 
-	@GetMapping("/articulos/search/{term}")
-	public List<Articulo> show(@PathVariable String term) {
-		return articuloService.findByModeloStartsWith(term);
+	@GetMapping("/articulos/search/marca/{marcaTerm}")
+	public List<Articulo> searchArticuloByMarca(@PathVariable String marcaTerm) {
+		return articuloService.searchArticuloByMarca(marcaTerm);
+	}
+
+	@GetMapping("/articulos/search/modelo/{modeloTerm}")
+	public List<Articulo> searchArticuloByModelo(@PathVariable String modeloTerm) {
+		return articuloService.searchArticuloByModelo(modeloTerm);
+	}
+
+	@GetMapping("/articulos/search/all/{marcaTerm}/{modeloTerm}")
+	public List<Articulo> searchArticuloByMarcaAndModelo(@PathVariable String marcaTerm, @PathVariable String modeloTerm) {
+		return articuloService.searchArticuloByMarcaAndModelo(marcaTerm, modeloTerm);
 	}
 	
 	@PostMapping("/articulos")
